@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Container } from './styles';
+import { Container, Owner, Loading, BackButton } from './styles';
+import {FaArrowLeft} from 'react-icons/fa';
 import api from '../../services/api';
 
 export default function Repositorios({match}) {
@@ -31,20 +32,28 @@ export default function Repositorios({match}) {
         load();
     }, [match.params.repositorios]);
 
+    if(loading) {
+        return(
+            <Loading>
+                <h1>Carregando...</h1>
+            </Loading>
+
+        )
+    }
+
     return(
         <Container>
-            <h1>{repositorios.name}</h1>
-            <p>{repositorios.description}</p>
-
-            {loading ? <p>Carregando...</p> : (
-                <ul>
-                    {issues.map(issue => (
-                        <li key={String(issue.id)}>
-                            <a href={issue.html_url}>{issue.title}</a>
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <BackButton to ="/">
+                <FaArrowLeft color="#000" size={30}/>
+            </BackButton>
+            
+           
+            <Owner>
+                <img src={repositorios.owner.avatar_url} alt={repositorios.owner.login}/>
+                <h1>{repositorios.name}</h1>
+                <p>{repositorios.description}</p>
+            </Owner>
+         
         </Container>
     )
 
