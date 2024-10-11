@@ -119,3 +119,32 @@ li{
 
 
 `;
+
+export const PageActions = styled.div`
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+button {
+    outline: 0;
+    border: 0;
+    background: #0D2636;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+
+    &:disabled {
+        background: #666;
+        color: #333;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &:hover {
+        background: #1793eb;
+    }
+
+}
+
+`;
